@@ -2,8 +2,8 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
 
-Window.clearcolor = (0, 1, 38/255, 1)
-Window.size = (350, 500)
+Window.clearcolor = (0, 1, 0, 1)
+Window.size = (350, 520)
 
 
 class MyLayout(Widget):
@@ -36,45 +36,15 @@ class MyLayout(Widget):
 
     def equal(self):
         prior = self.data.text
-        # for addition
-        if '+' in prior:
-            self.data.text = ''
-            numbers = prior.split('+')
-            addition = 0
-            for elements in numbers:
-                addition += float(elements)
-            self.data.text = str(addition)
+        try:
+            answer = eval(prior)
+            self.data.text = str(answer)
 
-            # for subtraction
-        elif '-' in prior:
-            self.data.text = ''
-            numbers = prior.split('-')
-            subtraction = 2 * float(str(numbers[0]))
-            for elements in numbers:
-                subtraction = subtraction - float(elements)
-            self.data.text = str(subtraction)
+        except ZeroDivisionError:
+            self.data.text = "Can't divide by zero"
 
-            # for multiplication
-        elif '*' in prior:
-            self.data.text = ''
-            numbers = prior.split('*')
-            multiplication = 1
-            for elements in numbers:
-                multiplication = multiplication * float(elements)
-            self.data.text = str(multiplication)
-
-            # for division
-        elif '/' in prior:
-            self.data.text = ''
-            numbers = prior.split('/')
-            division = float(numbers[0]) / float(numbers[-1])
-            self.data.text = str(division)
-
-            # for percentage
-        elif '%' in prior:
-            self.data.text = ''
-            self.data.text = str(int(prior[:-1])/100)
-
+        except:
+            self.data.text = 'Error'
 
 class CalculatorApp(App):
     def build(self):
