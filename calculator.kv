@@ -1,10 +1,48 @@
 #: import utils kivy.utils
+#: import Factory kivy.factory.Factory
+
+<MyPopup@Popup>
+
+    size_hint: 0.85, 0.7
+    pos_hint: {'top': 0.9}
+    title: 'About Us'
+
+    Label:
+        text:  'This app was developed by 7XDevs. If  \n you want to contact our developer, \n feel free to contact us through emails, \n facebook or twitter. \n \n Email: \n bashyalprabesh.12@gmail.com \n \n Facebook: \n www.facebook.com/prabesh.bashyal.7/ \n \n Twitter:  \n www.twitter.com/prabeshb1'
+
+
+
 <MyLayout>
     data: data
 
     BoxLayout:
         orientation: "vertical"
         size: (root.width, root.height)
+        GridLayout:
+            size_hint: (None, None)
+            size: (350,30)
+            rows: 1
+            cols: 3
+
+            Button:
+                text: 'About'
+                font_size: 15
+                size_hint: (.3,.3)
+                background_color: (157/255, 157/255, 157/255, 1)
+                on_release: Factory.MyPopup().open()
+
+            Label:
+                text: ''
+
+            Label:
+                text: "@prabesh_bashyal"
+                font_size: 15
+                size_hint: (.8, .1)
+                color: (0, 0, 0, 1)
+
+            Label:
+                text: ''
+
 
         TextInput:
             id: data
@@ -20,9 +58,9 @@
 
             Button:
                 size_hint: (.1, .1)
-                text: "%"
-                font_size: 30
-                on_press: root.operator_sign('%')
+                text: "x^2"
+                font_size: 25
+                on_press: root.operator_sign('**2')
 
             Button:
                 size_hint: (.1, .1)
